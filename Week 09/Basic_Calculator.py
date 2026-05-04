@@ -1,3 +1,6 @@
+# Student: Tuba Ahmad
+# Roll No: F2024408285
+# Week 09 - Basic Calculator
 import tkinter as tk
 
 def calculate(operation):

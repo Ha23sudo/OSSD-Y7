@@ -1,3 +1,6 @@
+# Student: Tuba Ahmad
+# Roll No: F2024408285
+# Week 09 - Student Manager
 import tkinter as tk
 from tkinter import messagebox
 # Simple Student Manager Application using Tkinter
