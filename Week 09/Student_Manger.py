@@ -1,51 +1,36 @@
-import tkinter as tk
-from tkinter import messagebox
-# Simple Student Manager Application using Tkinter
+students = []
 
-#main window
-root = tk.Tk()
-root.title("Student Manager")
-root.geometry("400x400")
+while True:
 
-# Input
-tk.Label(root, text="Enter Student Name").pack(pady=10)
-entry = tk.Entry(root, width=30)
-entry.pack(pady=5)
+    print("\n1. Add Student")
+    print("2. Display Students")
+    print("3. Exit")
 
-# Add Student
-def add_student():
-    name = entry.get()
+    choice = input("Enter choice: ")
 
-    if name == "":
-        messagebox.showwarning("Input Error", "Name cannot be empty!")
-        return
+    if choice == "1":
 
-    try:
-        with open("students.txt", "a") as file:
-            file.write(name + "\n")
+        name = input("Enter student name: ")
+        roll = input("Enter roll number: ")
 
-        messagebox.showinfo("Success", "Student added successfully!")
-        entry.delete(0, tk.END)
+        student = {
+            "name": name,
+            "roll": roll
+        }
 
-    except Exception as e:
-        messagebox.showerror("Error", str(e))
+        students.append(student)
 
-# View Students
-def view_students():
-    try:
-        with open("students.txt", "r") as file:
-            data = file.read()
+    elif choice == "2":
 
-        if data == "":
-            messagebox.showinfo("Students", "No students found!")
-        else:
-            messagebox.showinfo("Student List", data)
+        for student in students:
 
-    except FileNotFoundError:
-        messagebox.showerror("Error", "File not found!")
+            print("Name:", student["name"])
+            print("Roll:", student["roll"])
 
-# Buttons
-tk.Button(root, text="Add Student", command=add_student).pack(pady=10)
-tk.Button(root, text="View Students", command=view_students).pack(pady=10)
+    elif choice == "3":
 
-root.mainloop()
+        break
+
+    else:
+
+        print("Invalid choice")

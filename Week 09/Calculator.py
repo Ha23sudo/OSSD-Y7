@@ -17,36 +17,38 @@ def calculate():
         entry.delete(0, tk.END)
         entry.insert(tk.END, "Error")
 
-# Window Frame Root
 root = tk.Tk()
-root.title("Advanced Calculator")
-root.geometry("320x380")
-root.resizable(0, 0)
-root.configure(bg="#95adea")
-root.iconphoto(False, tk.PhotoImage(file="im.png"))
+root.title("Simple Calculator")
+root.geometry("300x300")
 
+entry = tk.Entry(root, width=25)
+entry.pack()
 
-# Display Entry
-entry = tk.Entry(root, font=("Arial", 20), bd=10, relief=tk.RIDGE, justify="right")
-entry.grid(row=0, column=0, columnspan=4)
+button_frame = tk.Frame(root)
+button_frame.pack()
 
-# Buttons layout
 buttons = [
-    ('7',1,0), ('8',1,1), ('9',1,2), ('/',1,3),
-    ('4',2,0), ('5',2,1), ('6',2,2), ('*',2,3),
-    ('1',3,0), ('2',3,1), ('3',3,2), ('-',3,3),
-    ('0',4,0), ('C',4,1), ('=',4,2), ('+',4,3),
+    '7','8','9','/',
+    '4','5','6','*',
+    '1','2','3','-',
+    '0','.','=','+'
 ]
 
-for (text, row, col) in buttons:
-    if text == "C":
-        action = clear
-    elif text == "=":
-        action = calculate
-    else:
-        action = lambda x=text: press(x)
+row = 0
+col = 0
 
-    tk.Button(root, text=text, width=5, height=2, font=("Arial", 14),
-              command=action).grid(row=row, column=col, padx=5, pady=5)
+for button in buttons:
+    if button == "=":
+        tk.Button(button_frame, text=button, width=5, command=calculate).grid(row=row, column=col)
+    else:
+        tk.Button(button_frame, text=button, width=5, command=lambda b=button: press(b)).grid(row=row, column=col)
+
+    col += 1
+
+    if col > 3:
+        col = 0
+        row += 1
+
+tk.Button(root, text="Clear", command=clear).pack()
 
 root.mainloop()
