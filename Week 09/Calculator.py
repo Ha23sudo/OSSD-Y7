@@ -17,13 +17,18 @@ def calculate():
         entry.delete(0, tk.END)
         entry.insert(tk.END, "Error")
 
-# Window Frame Root
+# Window Frame Root*
 root = tk.Tk()
 root.title("Advanced Calculator")
 root.geometry("320x380")
 root.resizable(0, 0)
 root.configure(bg="#95adea")
-root.iconphoto(False, tk.PhotoImage(file="im.png"))
+
+root.configure(bg="#95adea")
+try:
+    root.iconphoto(False, tk.PhotoImage(file="im.png"))
+except Exception:
+    pass
 
 
 # Display Entry
