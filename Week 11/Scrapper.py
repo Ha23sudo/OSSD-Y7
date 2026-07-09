@@ -27,23 +27,21 @@ def get_car_data(car):
         print("Page not available !")
 
     return car
-        
-        
 
-    
-    
-    
-    
-    
-    
 
 # function to save data on csv file
 def save_to_csv(data, filename):
-    pass
+    """Save a list of dicts (with 'name' and 'price' keys) to a CSV file."""
+    import csv
 
+    if not data:
+        print("No data to save!")
+        return
 
+    with open(filename, "w", newline="", encoding="utf-8") as csvfile:
+        writer = csv.DictWriter(csvfile, fieldnames=["name", "price"])
+        writer.writeheader()
+        for row in data:
+            writer.writerow(row)
 
-
-
-
-
+    print(f"Saved {len(data)} rows to {filename}")
